@@ -1,0 +1,11 @@
+{
+    "template_name": "research_paper_explainer_v1",
+    "description": "Reusable prompt template for explaining research papers",
+    "variables": [
+        "paper_name",
+        "style",
+        "length",
+        "user_input"
+    ],
+    "prompt_template": "\nYou are an AI research assistant.\n\n\ud83d\udcc4 Research Paper: {paper_name}\n\ud83c\udfaf Explanation Style: {style}\n\u270f\ufe0f Explanation Length: {length}\n\nUser additional input:\n{user_input}\n\n----------------------------\nTASK:\nExplain the research paper following the selected style and length.\n\nGuidelines:\n- Beginner-Friendly \u2192 remove jargon, explain in easy terms\n- Technical \u2192 explain architectures, formulas, theory\n- Code-Oriented \u2192 include pseudo-code or examples\n- Mathematical \u2192 focus on equations and algorithm logic\n\nStart your explanation below:\n"
+}
