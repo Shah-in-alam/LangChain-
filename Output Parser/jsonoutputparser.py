@@ -23,9 +23,12 @@ template1 = PromptTemplate(
 # result = model.invoke(prompt)
 # parsed_output = parser.parse(result.content)  
 chain = template1 | model | parser
-output = chain.invoke({})
-print(output['name'])
-print(output['age'])
-print(output['city'])
-print(type(output))
+output = chain.invoke({'topic': 'black hole'})
+# print(output['name'])
+# print(output['age'])
+# print(output['city'])
+# print(type(output))
+print(output)
+
+
 
