@@ -5,7 +5,7 @@ from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnableParallel,RunnableBranch
+from langchain_core.runnables import RunnableParallel,RunnableBranch,RunnableLambda
 from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
 from typing import Literal
@@ -36,3 +36,25 @@ print(result)
 
 # print(classifier_chain.invoke({'feedback':'This is the terrible smartphone.'}))
 # print(classifier_chain.invoke({'feedback':'I love the new design of your website!'}))
+
+prompt2=PromptTemplate(
+    template="Write an appropriate response to this positive \n {feedback}",
+    input_variables=['feedback']
+)
+prompt3=PromptTemplate(
+    template="Write an appropriate response to this negative \n {feedback}",
+    input_variables=['feedback']
+)
+# kind of like a switch statement
+
+brach_chain=RunnableBranch(
+    (lambda x:x.sentiment =='positive',prompt2 | model | parser),
+    (lambda x:x.sentiment =='negative',prompt3 | model | parser),
+    #lambda x: "No valid sentiment found."
+    RunnableLambda(lambda x: "No valid sentiment found.")
+)
+
+conditional_chain=classifier_chain | brach_chain
+result=conditional_chain.invoke({'feedback':'I love the new design of your website!'})
+print(result)  # Expected output: An appropriate response to the positive feedback.
+chain.get_graph().print_ascii()
