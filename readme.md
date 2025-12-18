@@ -47,7 +47,7 @@ It allows you to experiment with both **cloud and local LLMs**, pipeline setups,
 ```bash
 # 1️⃣ Clone the repo
 git clone https://github.com/Shah-in-alam/LangChain-.git
-cd ai-langchain-playground
+cd ai-langchain-
 
 # 2️⃣ Create a virtual environment
 python -m venv venv
