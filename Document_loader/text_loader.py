@@ -29,3 +29,8 @@ print(docs[0].metadata)   # should be of type Document
 chain =prompt | model | parser
 result= chain.invoke({'text': docs[0].page_content})
 print(result)
+
+chain = prompt | model | parser
+
+result=chain.invoke({'text': docs[0].page_content})
+print(result)
